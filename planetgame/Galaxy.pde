@@ -3,14 +3,14 @@ class Galaxy {
   ArrayList<Planet> planets;
     Planet u,d,l,r;
   float gravity;
-  color mousecolor;
+  PVector mousecolor;
     int minDis = 20;
   
   Galaxy(float grav){
     
-  mousecolor = 200;
+  mousecolor = new PVector(0,100,100);
   planets = new ArrayList<Planet>();
-  Planet mouse = new Planet(mouseX,mouseY,5,0,0, mousecolor);
+  Planet mouse = new Planet(mouseX,mouseY,20,0,0, mousecolor);
   planets.add(mouse);
   gravity = grav;
 }
@@ -80,7 +80,6 @@ class Galaxy {
   
       for(int i = 0; i<planets.size();i++){
         Planet x = planets.get(i);
-        //x.display();
         
         for(int j = i+1;j<planets.size();j++){
           Planet y = planets.get(j);
@@ -103,7 +102,9 @@ class Galaxy {
         
         for(int j=0; j<divide;j++){
           for(int k=0; k<divide;k++){
+            x.mass/=divide;
             x.display();
+            x.mass*=divide;
             x.location.x += w;
           }
           x.location.x-= w*divide;
@@ -111,9 +112,6 @@ class Galaxy {
         }
         
         x.location.set(y.location());
-        
-        
-      
     }
   }
   }
